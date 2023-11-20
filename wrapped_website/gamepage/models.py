@@ -5,8 +5,10 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import json, re
 from django.urls import reverse
-import random
+import random, os
+import settings
 
+file_path = os.path.join(settings.STATIC_ROOT, 'data/spotify_data.json')
 
 def random_pwd():
     possible_chars = list("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890")
@@ -72,17 +74,17 @@ class Track(models.Model):
 
     def getsongdata(self):
         try:
-            with open('./data/song-data.json', 'r') as f:
+            with open(file_path, 'r') as f:
                 results = json.load(f)[self.link]
         except KeyError:
             self.convert_to_uri()
             results = spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
             results = spotify.track(self.link)
             output_dict = {self.link: results}
-            with open('./data/song-data.json', 'r') as f:
+            with open(file_path, 'r') as f:
                 song_data = json.load(f)
             song_data[str(self.link)] = results
-            with open('./data/song-data.json', 'w') as f:
+            with open(file_path, 'w') as f:
                 json.dump(song_data, f)
             if self.link != "spotify:track:4PTG3Z6ehGkBFwjybzWkR8":
                 self.title = results['name']
