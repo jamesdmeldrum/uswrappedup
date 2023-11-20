@@ -96,9 +96,9 @@ class Track(models.Model):
     def embedlink(self):
         results = self.getsongdata()
         try:
-	    return results['preview_url'].split("?")[0]
-      	except AttributeError:
-	    return results['preview_url']
+            return results['preview_url'].split("?")[0]
+        except AttributeError:
+            return results['preview_url']
 
     def getimage(self):
         results = self.getsongdata()
