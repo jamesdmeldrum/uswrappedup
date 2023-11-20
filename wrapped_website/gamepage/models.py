@@ -8,7 +8,7 @@ from django.urls import reverse
 import random, os
 from .settings import STATIC_ROOT
 
-file_path = os.path.join(STATIC_ROOT, 'data/spotify_data.json')
+file_path = os.path.join(STATIC_ROOT, 'data/song-data.json')
 
 def random_pwd():
     possible_chars = list("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890")
