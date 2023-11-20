@@ -7,4 +7,6 @@ try:
     os.environ["SPOTIPY_CLIENT_ID"] = spotify_keys["client_ID"]
     os.environ["SPOTIPY_CLIENT_SECRET"] = spotify_keys["client_secret"]
 except FileNotFoundError:
+    print("-----------------------------------------")
     print(os.getcwd())
+    print("-----------------------------------------")
