@@ -1,8 +1,8 @@
 import os
 import json
-import settings
+from .settings import STATIC_ROOT
 
-file_path = os.path.join(settings.STATIC_ROOT, 'data/spotify_keys.json')
+file_path = os.path.join(STATIC_ROOT, 'data/spotify_keys.json')
 
 with open(file_path, 'r') as f:
     spotify_keys = json.load(f)
