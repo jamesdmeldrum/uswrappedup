@@ -1,0 +1,23 @@
+{% extends "gamepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if object.owner == user %}
+<h1 class="article-title" >{{ object.title }}</h1>
+{% endif %}
+
+<article class="media content-section">
+    <div class="col-xs-1" align="center">
+        <h2>Invite to Play</h2>
+        <p>https://localhost:8000/play/{{ object.passcode }}</p>
+    </div>
+</article>
+
+<article class="media content-section">
+    <div class="col-xs-1" align="center">
+        <h2>Invite to Add a Track</h2>
+        <p>https://localhost:8000/add/{{ object.passcode }}</p>
+    </div>
+</article>
+
+{% endblock content %}

@@ -1,0 +1,121 @@
+{% extends "gamepage/base.html" %}
+{% load static %}
+{% block content %}
+
+<script>
+let audio;
+let oldtrack;
+
+function pauseAudio() {
+  // If audio is not undefined and if is playing, pause it
+  if (audio && !audio.paused) {
+    audio.pause();
+  }
+}
+
+function playSound(track) {
+    pauseAudio();
+    audio = document.getElementById(track);
+    if (track != oldtrack) {
+        oldtrack = track;
+        if (audio.paused) audio.play();
+        else {
+            audio.pause();
+        }
+    }
+    else {
+        oldtrack = "";
+    }
+};
+</script>
+
+{% if object.owner == user %}
+<h1 class="article-title" >{{ object.title }}</h1>
+
+{% for track in object.tracks %}
+<article class="media content-section" id="{{ track.link }}">
+    <div class="col-xs-1" align="center">
+    <div class="track-media">
+        <audio id="{{ track.title }}" src="{{ track.embedlink }}" preload="auto"></audio>
+    </div>
+    <a href="javascript:playSound('{{ track.title }}')">
+        <div class="wrapper">
+            <div class="track-section {{ track.title }}" style="background-image: url({{ track.getimage }});">
+                <div class="box title-bg" id="bg-{{ track.link }}">
+                    <div class="box title-bg-int"><h1 class="track-text" id="title-{{ track.link }}">{{ track.title }}</h1></div>
+                    <div class="box title-bg-int"><h1 class="track-text" id="artist-{{ track.link }}">{{ track.getartist }}</h1></div>
+                    <div class="box title-bg-int"><h1 class="track-text" id="user-{{ track.link }}"></h1></div>
+                </div>
+            </div>
+        </div>
+    </a>
+        <h2>Guess Listener</h2>
+<select class="custom-select" id="guess {{ track.title }}">
+            <option selected>Choose...</option>
+            {% for track2 in object.tracks_alphabetical %}
+            {% if track2.person == track.person %}
+            <option class="correct" value="correct" id="person-{{ track2.link }}">{{ track2.person }}</option>
+            {% else %}
+            <option class="incorrect" value="incorrect">{{ track2.person }}</option>
+            {% endif %}
+            {% endfor %}
+</select>
+    </div>
+</article>
+{% endfor %}
+
+<div class="col-xs-1" align="center">
+    <h2 id="final-tally"></h2>
+</div>
+
+<div class="col-xs-1" align="center">
+    <button type="button" class="btn btn-success" id="ShowResults">Show Results</button>
+    <button type="button" class="btn btn-success" id="Reveal">Reveal Listeners</button>
+</div>
+
+<script>
+const resultsbutton = document.getElementById('ShowResults');
+const revealbutton = document.getElementById('Reveal');
+
+if (resultsbutton) {
+  resultsbutton.addEventListener('click', function(){
+    const collection = document.getElementsByClassName("custom-select");
+    let correct = 0;
+    let total = collection.length;
+    for (let i = 0; i < collection.length; i++) {
+      let item_frame = document.getElementById(collection[i].parentElement.parentElement.id);
+      if (collection[i].value == "correct") {
+        item_frame.style.backgroundColor = "#519664";
+        correct++;
+      } else {
+        item_frame.style.backgroundColor = "#ed5d53";
+      }
+    }
+    let tally_text = document.getElementById("final-tally")
+    let pct = 100 * correct / total;
+    tally_text.innerHTML = correct.toString().concat("/", total.toString(), " Correct. ", Math.round(pct), "%")
+}, false);
+};
+
+if (revealbutton) {
+  revealbutton.addEventListener('click', function(){
+        const collection = document.getElementsByClassName("title-bg");
+        for (let i = 0; i < collection.length; i++) {
+            let title = collection[i].id;
+            title = title.substring(3);
+            element_id = "user-".concat(title);
+            console.log(element_id);
+            let user_text = document.getElementById(element_id);
+
+            value_id = "person-".concat(title);
+            username = document.getElementById(value_id).innerHTML;
+
+            user_text.innerHTML = username;
+        }
+    }, false);
+};
+</script>
+
+{% endif %}
+
+{% endblock content %}
