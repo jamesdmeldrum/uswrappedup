@@ -29,7 +29,6 @@ function playSound(track) {
 };
 </script>
 
-{% if object.owner == user %}
 <h1 class="article-title" >{{ object.title }}</h1>
 
 {% for track in object.tracks %}
@@ -116,6 +115,5 @@ if (revealbutton) {
 };
 </script>
 
-{% endif %}
 
 {% endblock content %}
