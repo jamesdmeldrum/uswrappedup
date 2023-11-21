@@ -33,32 +33,30 @@ function playSound(track) {
 
 {% for track in object.tracks %}
 <article class="media content-section" id="{{ track.link }}">
-    <div class="col-xs-1" align="center">
-    <div class="track-media">
-        <audio id="{{ track.title }}" src="{{ track.embedlink }}" preload="auto"></audio>
-    </div>
-    <a href="javascript:playSound('{{ track.title }}')">
-        <div class="wrapper">
-            <div class="track-section {{ track.title }}" style="background-image: url({{ track.getimage }});">
-                <div class="box title-bg" id="bg-{{ track.link }}">
-                    <div class="box title-bg-int"><h1 class="track-text" id="title-{{ track.link }}">{{ track.title }}</h1></div>
-                    <div class="box title-bg-int"><h1 class="track-text" id="artist-{{ track.link }}">{{ track.getartist }}</h1></div>
-                    <div class="box title-bg-int"><h1 class="track-text" id="user-{{ track.link }}"></h1></div>
-                </div>
-            </div>
+    <div class="col-xs-1 track" align="center">
+        <div class="track-media">
+            <audio id="{{ track.title }}" src="{{ track.embedlink }}" preload="auto"></audio>
         </div>
-    </a>
+        <a href="javascript:playSound('{{ track.title }}')">
+            <div class="track-section {{ track.title }}" style="background-image: url({{ track.getimage }});">
+                    <div class="box title-bg" id="bg-{{ track.link }}">
+                        <div class="box title-bg-int"><h1 class="track-text" id="title-{{ track.link }}">{{ track.title }}</h1></div>
+                        <div class="box title-bg-int"><h1 class="track-text" id="artist-{{ track.link }}">{{ track.getartist }}</h1></div>
+                        <div class="box title-bg-int"><h1 class="track-text" id="user-{{ track.link }}"></h1></div>
+                    </div>
+            </div>
+        </a>
         <h2>Guess Listener</h2>
-<select class="custom-select" id="guess {{ track.title }}">
-            <option selected>Choose...</option>
-            {% for track2 in object.tracks_alphabetical %}
-            {% if track2.person == track.person %}
-            <option class="correct" value="correct" id="person-{{ track2.link }}">{{ track2.person }}</option>
-            {% else %}
-            <option class="incorrect" value="incorrect">{{ track2.person }}</option>
-            {% endif %}
-            {% endfor %}
-</select>
+        <select class="custom-select" id="guess {{ track.title }}">
+                    <option selected>Choose...</option>
+                    {% for track2 in object.tracks_alphabetical %}
+                    {% if track2.person == track.person %}
+                    <option class="correct" value="correct" id="person-{{ track2.link }}">{{ track2.person }}</option>
+                    {% else %}
+                    <option class="incorrect" value="incorrect">{{ track2.person }}</option>
+                    {% endif %}
+                    {% endfor %}
+        </select>
     </div>
 </article>
 {% endfor %}

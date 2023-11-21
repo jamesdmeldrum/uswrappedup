@@ -45,7 +45,7 @@ class Game(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('game-detail', kwargs={'passcode': self.passcode})
+        return reverse('game-invite', kwargs={'passcode': self.passcode})
 
 
 class Track(models.Model):
