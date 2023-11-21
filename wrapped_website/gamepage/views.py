@@ -93,7 +93,9 @@ def AddTrack(request, passcode):
 def add(request):
     context = {}
     form = PlayForm()
+    games = Game.objects.all()
     context["form"] = form
+    context["games"] = games
 
     if request.method == "POST":
         form = PlayForm(request.POST)
