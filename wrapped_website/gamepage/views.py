@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Game, Track
+from .models import Game, Track, random_pwd
 from .forms import PlayForm, AddTrackForm
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.decorators import login_required
@@ -114,10 +114,11 @@ def invite(request):
 class CreateGame(CreateView):
     model = Game
     template_name = 'gamepage/create.html'
-    fields = ['title', 'passcode']
+    fields = ['title']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
+        form.instance.passcode = random_pwd()
         return super().form_valid(form)
 
 
