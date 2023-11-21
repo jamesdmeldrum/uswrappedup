@@ -2,6 +2,20 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+<script>
+function myFunction(id) {
+
+  if (id == 1) {
+        navigator.clipboard.writeText("uswrappedup.com/play/{{ object.passcode }}");
+  } else {
+        navigator.clipboard.writeText("uswrappedup.com/add/{{ object.passcode }}");
+  }
+
+  // Alert the copied text
+  alert("Invite link added to clipboard.");
+}
+</script>
+
 {% if object.owner == user %}
 <h1 class="article-title" >{{ object.title }}</h1>
 {% endif %}
@@ -9,14 +23,16 @@
 <article class="media content-section">
     <div class="col-xs-1" align="center">
         <h2>Invite to Play</h2>
-        <p>https://localhost:8000/play/{{ object.passcode }}</p>
+        <p id="uswrappedup.com/play/{{ object.passcode }}">uswrappedup.com/play/{{ object.passcode }}</p>
+        <button onclick="myFunction(1)">Copy link</button>
     </div>
 </article>
 
 <article class="media content-section">
     <div class="col-xs-1" align="center">
         <h2>Invite to Add a Track</h2>
-        <p>https://localhost:8000/add/{{ object.passcode }}</p>
+        <p id="uswrappedup.com/add/{{ object.passcode }}">uswrappedup.com/add/{{ object.passcode }}</p>
+        <button onclick="myFunction(2)">Copy link</button>
     </div>
 </article>
 
