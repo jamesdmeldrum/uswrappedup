@@ -11,7 +11,11 @@
      <section class="right-subsection">
           <div class="vertical-center vertical-center-hero">
             <h2 class="section-content"> <a class="section-link" href="{% url 'gamepage-play' %}">Play</a> </h2>
+            {% if user.is_authenticated %}
+            <h2 class="section-content"> <a class="section-link" href="{% url 'gamepage-create' %}">Create a Game</a> </h2>
+            {% else %}
             <h2 class="section-content"> <a class="section-link" href="{% url 'register' %}">Sign Up</a> </h2>
+            {% endif %}
           </div>
      </section>
     </section>

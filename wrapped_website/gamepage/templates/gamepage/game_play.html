@@ -11,7 +11,7 @@ function pauseAudio() {
   if (audio && !audio.paused) {
     audio.pause();
   }
-}
+};
 
 function playSound(track) {
     pauseAudio();
@@ -30,6 +30,22 @@ function playSound(track) {
 </script>
 
 <h1 class="article-title" >{{ object.title }}</h1>
+
+{% if object.owner == user %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {% if object.reveal == True %}
+                <button class="btn btn-outline-info" type="submit" value="{{ object.reveal }}">Toggle Reveal Off</button>
+            {% else %}
+                <button class="btn btn-outline-info" type="submit" value="{{ object.reveal }}">Toggle Reveal On</button>
+            {% endif %}
+        </div>
+    </form>
+
+{% endif %}
 
 {% for track in object.tracks %}
 <article class="media content-section" id="{{ track.link }}">
@@ -67,7 +83,9 @@ function playSound(track) {
 
 <div class="col-xs-1" align="center">
     <button type="button" class="btn btn-success" id="ShowResults">Show Results</button>
+    {% if object.reveal == 1 %}
     <button type="button" class="btn btn-success" id="Reveal">Reveal Listeners</button>
+    {% endif %}
 </div>
 
 <script>

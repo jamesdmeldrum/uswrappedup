@@ -29,6 +29,16 @@ class Game(models.Model):
     title = models.CharField(max_length=40)
     date_created = models.DateTimeField(default=timezone.now)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    reveal = models.BooleanField(default=True)
+
+    def toggle_reveal(self):
+        if self.reveal:
+            self.reveal = False
+        else:
+            self.reveal = True
+
+    def get_reveal(self):
+        return self.reveal
 
     def tracks(self):
         return [track for track in Track.objects.filter(game=self)]

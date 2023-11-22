@@ -51,7 +51,13 @@ def GamePlay(request, passcode):
     context = {}
     game = Game.objects.filter(passcode=passcode).first()
     context["object"] = game
-    return render(request, 'gamepage/game_play.html', context)
+    context["title"] = game.title
+
+    if request.method == 'POST':
+        game.toggle_reveal()
+        return render(request, 'gamepage/game_play.html', context)
+    else:
+        return render(request, 'gamepage/game_play.html', context)
 
 
 class GameDetailView(DetailView):
