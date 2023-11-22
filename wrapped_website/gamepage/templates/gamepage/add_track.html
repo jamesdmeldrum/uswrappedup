@@ -1,6 +1,17 @@
 {% extends "gamepage/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+
+<ol>
+    <li>Open Spotify and search for the top song in your spotify wrapped.</li>
+<li>Tap the three dots next to that song.</li>
+<li>Choose “Share” from the dropdown menu.</li>
+<li>Click “Copy Song Link.”</li>
+<li>A URL will now be added to your clipboard.</li>
+    <li>Paste the URL below</li>
+</ol>
+
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
