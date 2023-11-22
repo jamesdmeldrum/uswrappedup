@@ -48,12 +48,12 @@ function playSound(track) {
 <!--{% endif %}-->
 
 {% for track in object.tracks %}
-<article class="media content-section"">
+<article class="media content-section" id="{{ track.link }}">
     <div class="col-xs-1 track" align="center">
         <div class="track-media">
-            <audio id="{{ track.link }}" src="{{ track.embedlink }}" preload="auto"></audio>
+            <audio id="{{ track.link }}-audio" src="{{ track.embedlink }}" preload="auto"></audio>
         </div>
-        <a href="javascript:playSound('{{ track.link }}')">
+        <a href="javascript:playSound('{{ track.link }}-audio')">
             <div class="track-section {{ track.title }}" style="background-image: url({{ track.getimage }});">
                     <div class="box title-bg" id="bg-{{ track.link }}">
                         <div class="box title-bg-int"><h1 class="track-text" id="title-{{ track.link }}">{{ track.title }}</h1></div>
