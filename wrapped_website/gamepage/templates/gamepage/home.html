@@ -1,6 +1,21 @@
 {% extends "gamepage/base.html" %}
+
+{% load static %}
+
 {% block content %}
 
-<h1>Home Page</h1>
 
-{% endblock content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'gamepage/homepage-style.css' %}">
+
+    <section class="fullpage-section">
+     <section class="right-subsection">
+          <div class="vertical-center vertical-center-hero">
+            <h2 class="section-content"> <a class="section-link" href="{% url 'gamepage-play' %}">Play</a> </h2>
+            <h2 class="section-content"> <a class="section-link" href="{% url 'register' %}">Sign Up</a> </h2>
+          </div>
+     </section>
+    </section>
+    <script type="text/javascript" src="{% static 'gamepage/scroll_fade.js' %}"></script>
+
+{% endblock %}
+
