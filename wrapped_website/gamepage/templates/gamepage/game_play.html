@@ -93,6 +93,24 @@ function playSound(track) {
 </div>
 
 <script>
+const selected_listeners = document.getElementsByClassName("custom-select");
+
+for (let i = 0; i < selected_listeners.length; i++) {
+    selected_listeners[i].addEventListener('change', (event) => {
+        let current_selection = event.target.selectedIndex;
+        let combined_selection = event.target.id + "{{ object.passcode }}";
+        localStorage.setItem(combined_selection, current_selection);
+    });
+}
+
+for (let i = 0; i < selected_listeners.length; i++) {
+    let combined_selection = selected_listeners[i].id + "{{ object.passcode }}";
+    if (localStorage.getItem(combined_selection)) {
+        selected_listeners[i].selectedIndex = localStorage.getItem(combined_selection);
+    }
+}
+
+
 const resultsbutton = document.getElementById('ShowResults');
 const revealbutton = document.getElementById('Reveal');
 
@@ -123,7 +141,6 @@ if (revealbutton) {
             let title = collection[i].id;
             title = title.substring(3);
             element_id = "user-".concat(title);
-            console.log(element_id);
             let user_text = document.getElementById(element_id);
 
             value_id = "person-".concat(title);
@@ -133,6 +150,7 @@ if (revealbutton) {
         }
     }, false);
 };
+
 </script>
 
 
