@@ -88,7 +88,7 @@ class Track(models.Model):
                 results = json.load(f)[self.link]
         except KeyError:
             self.convert_to_uri()
-            results = spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+            spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
             results = spotify.track(self.link)
             output_dict = {self.link: results}
             with open(file_path, 'r') as f:
@@ -108,6 +108,13 @@ class Track(models.Model):
         try:
             return results['preview_url'].split("?")[0]
         except AttributeError:
+            spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+            results = spotify.track(self.link)
+            with open(file_path, 'r') as f:
+                song_data = json.load(f)
+            song_data[str(self.link)] = results
+            with open(file_path, 'w') as f:
+                json.dump(song_data, f)
             return results['preview_url']
 
     def getimage(self):
