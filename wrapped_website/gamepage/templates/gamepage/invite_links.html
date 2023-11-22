@@ -6,9 +6,9 @@
 function myFunction(id) {
 
   if (id == 1) {
-        navigator.clipboard.writeText("uswrappedup.com/play/{{ object.passcode }}");
+        navigator.clipboard.writeText("https://www.uswrappedup.com/play/{{ object.passcode }}");
   } else {
-        navigator.clipboard.writeText("uswrappedup.com/add/{{ object.passcode }}");
+        navigator.clipboard.writeText("https://www.uswrappedup.com/add/{{ object.passcode }}");
   }
 
   // Alert the copied text
@@ -23,7 +23,7 @@ function myFunction(id) {
 <article class="media content-section">
     <div class="col-xs-1" align="center">
         <h2>Invite to Play</h2>
-        <p id="uswrappedup.com/play/{{ object.passcode }}">uswrappedup.com/play/{{ object.passcode }}</p>
+        <p id="uswrappedup.com/play/{{ object.passcode }}">https://www.uswrappedup.com/play/{{ object.passcode }}</p>
         <button onclick="myFunction(1)">Copy link</button>
     </div>
 </article>
@@ -31,7 +31,7 @@ function myFunction(id) {
 <article class="media content-section">
     <div class="col-xs-1" align="center">
         <h2>Invite to Add a Track</h2>
-        <p id="uswrappedup.com/add/{{ object.passcode }}">uswrappedup.com/add/{{ object.passcode }}</p>
+        <p id="uswrappedup.com/add/{{ object.passcode }}">https://www.uswrappedup.com/add/{{ object.passcode }}</p>
         <button onclick="myFunction(2)">Copy link</button>
     </div>
 </article>
