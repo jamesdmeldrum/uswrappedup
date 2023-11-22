@@ -1,0 +1,161 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
+	background-color: #333333;
+}
+
+.header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    top: 0;
+    z-index: 999;
+    opacity: 1;
+    position: fixed;
+    color: #EDF5E1;
+}
+
+#right-header {
+    width: 35vw;
+    justify-content: right;
+    left: 65vw;
+    border-bottom-left-radius: 18% 100%;
+    background-color: #5CDB95;
+}
+
+#left-header {
+    width: 50vw;
+    justify-content: left;
+    left: 2vw;
+    background-colour: #242582
+}
+
+.page-title {
+    color: #EDF5E1;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.header-menu {
+    display: flex;
+    align-items: right;
+    list-style-type: none;
+    text-align: center;
+}
+
+.header-item {
+    height: 80px;
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.header-section {
+    height=10vh;
+    width: 100%;
+    overflow: hidden;
+    float: left;
+}
+
+.header-subsection {
+    height: 100%;
+    width: 30%;
+    text-align: center;
+    font-size: 15px;
+    float: left;
+}
+
+.header-link {
+    color: #EDF5E1;
+    transition: all 0.25s ease;
+}
+.header-link:hover {
+   color: #1ed760;
+}
+
+.fullpage-section {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  float: right;
+}
+
+.left-subsection {
+  width: 50%;
+  height: 100%;
+  float: center;
+  text-align: center;
+}
+
+.right-subsection {
+  width: 100%;
+  height: 100%;
+  float: right;
+  align-items: center;
+  text-align: center;
+}
+
+.section-title {
+  padding-right: 2vw;
+  padding-left: 2vw;
+  font-size: calc(105px + 0.39vw);
+  color: #5CDB95;
+}
+
+.section-content {
+  padding-right: 2vw;
+  padding-left: 2vw;
+  font-size: 8vh;
+}
+
+.section-link {
+  color: #EDF5E1;
+  text-decoration: none;
+}
+
+a:hover {
+    color: #1ed760;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    transform: translateY(-50%);
+    width: inherit;
+}
+
+.vertical-center-hero {
+  top: 50%;
+}
+
+.vertical-center-2 {
+  top: 150%;
+}
+
+.vertical-center-3 {
+  top: 250%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
